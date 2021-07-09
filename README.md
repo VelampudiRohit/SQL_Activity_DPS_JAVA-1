@@ -70,27 +70,27 @@ INSERT INTO movie VALUES
 ### SQL Fundamentals Query
 1. Display the name of movies, movie type is starts with Drama: `SELECT * FROM movie WHERE Movietype LIKE 'Drama%';`
 2. Display the movies acted by actor Ayushmann: `SELECT * FROM movie WHERE Heroname='Ayushmann';`
-3. Display the count of movies, having length above 18: `SELECT COUNT(Length) FROM movie WHERE length>18;`
+3. Display the COUNT of movies, having length above 18: `SELECT COUNT(Length) FROM movie WHERE length>18;`
 4. Display the movie having minimum length: ` SELECT Moviename , MIN(length) FROM movie;`
 5. Display all the details of movie, the language that first name starts with ‘T’: `SELECT * FROM movie WHERE language LIKE 'T%';`
 6. Display the movie name, hero name, heroine name whose having maximum length: `SELECT Moviename,Heroname ,Heroine  , MAX(length) FROM movie;`
 7. Display the movie name, hero name, heroine name the movie released after 15 march 2018: `SELECT Moviename,Heroname ,Heroine FROM movie WHERE Releaseddate > 20180315;`
-8. Display the count of thriller movies: `SELECT COUNT(Movietype) FROM movie WHERE Movietype='Thriller';`
-9. Display the count of movies whose released before 15 march 2018: `SELECT * from movie where Releaseddate < 20180315; `
+8. Display the COUNT of thriller movies: `SELECT COUNT(Movietype) FROM movie WHERE Movietype='Thriller';`
+9. Display the COUNT of movies whose released before 15 march 2018: `SELECT * from movie WHERE Releaseddate < 20180315; `
 10. Display the release date of the movie name ‘Zero’: `SELECT Releasedate FROM movie WHERE Moviename='Zero';`
 11. Display the actor name that acted with ‘Amy’: `SELECT Heroname FROM movie WHERE Heroine='Amy';`
-12. Display the Count of maximum movies released in a month of October: `SELECT COUNT(*) FROM movie WHERE  ;`
+12. Display the COUNT of maximum movies released in a month of October: `SELECT COUNT(*) FROM movie WHERE  ;`
 13. Display the movienames whose production id is same for different languages: `SELECT * FROM movie WHERE  ;`
 
 ### SQL Advanced Query
-1. Write the query to display productionid, production name with total number movies produced by each.
-2. Write the query to display production name, owner name have produced more than 2 movies.
-3. Write the query to display production name, owner name have produced maximum movies
-4. Write the query to display the moviename, heroname and productionname acted in the producer name= ’Subaskaran’.
-5. Write the query to display the moviename, heroname whose productionid ends with 82.
-6. Write the query to display the productionname, ownername who has not produced the movie.
-7. Write the query to display the productionname, ownername who has not produced the ‘hindi’ movie.
-8. Write the query name to display the heroinename who acted in the different productions but not in same production id.
+1. Write the query to display productionid, production name with total number movies produced by each : `SELECT productions.Productionid, Productionname, COUNT(Productionname) AS COUNT FROM movie INNER JOIN productions WHERE productions.Productionid=movie.Productionid GROUP BY movie.Productionid ORDER BY movie.Productionid;`
+2. Write the query to display production name, owner name have produced more than 2 movies : `SELECT Productionname, Ownername, Moviename FROM movie INNER JOIN productions ON movie.Productionid=productions.Productionid GROUP BY Productionname HAVING COUNT(Productionname)>2;`
+3. Write the query to display production name, owner name have produced maximum movies : `SELECT Productionname, Ownername, Moviename FROM movie INNER JOIN productions ON movie.Productionid=productions.Productionid GROUP BY Productionname HAVING COUNT(Productionname)=(SELECT COUNT(productionid) as COUNT FROM movie GROUP BY productionid ORDER BY COUNT(productionid) DESC LIMIT 1);`
+4. Write the query to display the moviename, heroname and productionname acted in the producer name= ’Subaskaran’ : . `SELECT Moviename, Heroname, Productionname FROM movie INNER JOIN productions ON movie.Productionid=productions.Productionid WHERE Ownername = "Subaskaran";`
+5. Write the query to display the moviename, heroname whose productionid ends with 82 : `SELECT Moviename, Heroname FROM movie WHERE Productionid LIKE "%82";`
+6. Write the query to display the productionname, ownername who has not produced the movie :` SELECT productions.productionid, COUNT(movie.productionid) FROM productions LEFT JOIN movie ON productions.productionid=movie.productionid GROUP BY productions.productionid;`
+7. Write the query to display the productionname, ownername who has not produced the ‘hindi’ movie : `SELECT distinct productionname, ownername FROM productions INNER JOIN movie on productions.productionid=movie.productionid WHERE language!="Hindi";`
+8. Write the query name to display the heroinename who acted in the different productions but not in same production id : `SELECT heroine FROM movie GROUP BY heroine HAVING COUNT(distinct movie.productionid)>1;`
 9. Write the query to display the heroname who acted in maximum languages.
 10. Write the query to display the production name, owner name who has produced movie for more languages.
 11. Write the query to display the productionname, producername who has not produced any movie.
@@ -121,7 +121,7 @@ INSERT INTO CUSTOMERS VALUES
 * Show Table :
 `SELECT * FROM CUSTOMERS;`
 * Subquery with Select Statement : 
-`SELECT * FROM CUSTOMERS WHERE ID IN (SELECT ID FROM CUSTOMERS WHERE SALARY > 4500) ;`
+`SELECT * FROM CUSTOMERS WHERE ID IN (SELECT ID FROM CUSTOMERS WHERE SALARY > 4500);`
 * Choose the agr and address of customers whose salary is 2000.00 :
 `SELECT AGE,ADDRESS FROM CUSTOMERS WHERE SALARY IN(SELECT SALARY FROM CUSTOMERS WHERE SALARY=2000.00);`
 * Second Largest Salary :
