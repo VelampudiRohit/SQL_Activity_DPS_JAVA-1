@@ -67,19 +67,19 @@ INSERT INTO movie VALUES
 ```
 
 ## SQL Fundamentals Query
-1. Display the name of movies, movie type is starts with Drama: 
-2. Display the movies acted by actor Ayushmann:
-3. Display the count of movies, having length above 18:
-4. Display the movie having minimum length:
-5. Display all the details of movie, the language that first name starts with ‘T’:
-6. Display the movie name, hero name, heroine name whose having maximum length:
-7. Display the movie name, hero name, heroine name the movie released after 15 march 2018:
-8. Display the count of thriller movies:
-9. Display the count of movies whose released before 15 march 2018:
-10. Display the release date of the movie name ‘Zero’:
-11.Display the actor name that acted with ‘Amy’:
-12.Display the Count of maximum movies released in a month of October:
-13.Display the movienames whose production id is same for different languages:
+1. Display the name of movies, movie type is starts with Drama: `SELECT * FROM movie WHERE Movietype LIKE 'Drama%';`
+2. Display the movies acted by actor Ayushmann: `SELECT * FROM movie WHERE Heroname='Ayushmann';`
+3. Display the count of movies, having length above 18: `SELECT COUNT(Length) FROM movie WHERE length>18;`
+4. Display the movie having minimum length: ` SELECT Moviename , MIN(length) FROM movie;`
+5. Display all the details of movie, the language that first name starts with ‘T’: `SELECT * FROM movie WHERE language LIKE 'T%';`
+6. Display the movie name, hero name, heroine name whose having maximum length: `SELECT Moviename,Heroname ,Heroine  , MAX(length) FROM movie;`
+7. Display the movie name, hero name, heroine name the movie released after 15 march 2018: `SELECT Moviename,Heroname ,Heroine FROM movie WHERE Releaseddate > 20180315;`
+8. Display the count of thriller movies: `SELECT COUNT(Movietype) FROM movie WHERE Movietype='Thriller';`
+9. Display the count of movies whose released before 15 march 2018: `SELECT * from movie where Releaseddate < 20180315; `
+10. Display the release date of the movie name ‘Zero’: `SELECT Releasedate FROM movie WHERE Moviename='Zero';`
+11. Display the actor name that acted with ‘Amy’: `SELECT Heroname FROM movie WHERE Heroine='Amy';`
+12. Display the Count of maximum movies released in a month of October: `SELECT COUNT(*) FROM movie WHERE  `
+13. Display the movienames whose production id is same for different languages: `SELECT * FROM movie WHERE ;`
 
 ## SQL Advanced Query
 1. Write the query to display productionid, production name with total number movies produced by each.
