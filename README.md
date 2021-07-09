@@ -2,7 +2,7 @@
 SQL Activities for Genesis 2021
 
 1. Create the table name: productions
-* ```
+```
 CREATE TABLE productions (
     Productionid INT(5) PRIMARY KEY, 
     Productionname VARCHAR(30), 
@@ -11,7 +11,8 @@ CREATE TABLE productions (
     Ownername VARCHAR(20) 
     );
 ```
-* ```
+ 
+```
 INSERT INTO productions VALUES 
 (9091,"Arkamediaworks","Hyderabad",2001,"Shobu Yarlagadda"),
 (8892,"Lyca Productions","Chennai",2014,"Subaskaran"),
@@ -22,12 +23,13 @@ INSERT INTO productions VALUES
 (6773,"Hombale Flims","Bangalore",1995,"Vijay"),
 (7682,"Mythri Movie Makers","Hyderabad",2015,"Naveen Yerneni"),
 (1854,"Junglee Pictures","Mumbai",2014,"Vineeth Jain"),
-(2341,"CRM","Bangalore",2017,"Manohar")
-,(1111,"STP","Chennai",2018,"Sree");
+(2341,"CRM","Bangalore",2017,"Manohar"),
+(1111,"STP","Chennai",2018,"Sree");
 ```
 
 2. Create the table name: movie
-* ```
+ 
+```
 CREATE TABLE movie (
     Movieid INT(5) PRIMARY KEY, 
     Moviename VARCHAR(30), 
@@ -41,7 +43,8 @@ CREATE TABLE movie (
     FOREIGN KEY (Productionid) REFERENCES productions(Productionid)
     );
 ```
-* ```
+
+```
 INSERT INTO movie VALUES 
 (201,"Bahubali – The Beginning", "Prabhas", "Tamannah",20150710,"Telugu",21," Drama Fantasy", 9091),
 (501,"2.0", "Rajnikanth", "Amy",20181129," Tamil", 20,"Scientific", 8892),
