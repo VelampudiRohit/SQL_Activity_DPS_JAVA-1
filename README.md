@@ -1,6 +1,7 @@
 # SQL_Activity_DPS_JAVA
 SQL Activities for Genesis 2021
 
+## Activity-1
 1. Create the table name: productions
 ```
 CREATE TABLE productions (
@@ -66,7 +67,7 @@ INSERT INTO movie VALUES
 (267,"Anaganaga O Dheerudu", "Siddharth", "Shruthi", 20140114, "Telugu" ,16, "Fantasy", 9091);
 ```
 
-## SQL Fundamentals Query
+### SQL Fundamentals Query
 1. Display the name of movies, movie type is starts with Drama: `SELECT * FROM movie WHERE Movietype LIKE 'Drama%';`
 2. Display the movies acted by actor Ayushmann: `SELECT * FROM movie WHERE Heroname='Ayushmann';`
 3. Display the count of movies, having length above 18: `SELECT COUNT(Length) FROM movie WHERE length>18;`
@@ -78,10 +79,10 @@ INSERT INTO movie VALUES
 9. Display the count of movies whose released before 15 march 2018: `SELECT * from movie where Releaseddate < 20180315; `
 10. Display the release date of the movie name ‘Zero’: `SELECT Releasedate FROM movie WHERE Moviename='Zero';`
 11. Display the actor name that acted with ‘Amy’: `SELECT Heroname FROM movie WHERE Heroine='Amy';`
-12. Display the Count of maximum movies released in a month of October: `SELECT COUNT(*) FROM movie WHERE  `
-13. Display the movienames whose production id is same for different languages: `SELECT * FROM movie WHERE ;`
+12. Display the Count of maximum movies released in a month of October: `SELECT COUNT(*) FROM movie WHERE  ;`
+13. Display the movienames whose production id is same for different languages: `SELECT * FROM movie WHERE  ;`
 
-## SQL Advanced Query
+### SQL Advanced Query
 1. Write the query to display productionid, production name with total number movies produced by each.
 2. Write the query to display production name, owner name have produced more than 2 movies.
 3. Write the query to display production name, owner name have produced maximum movies
@@ -93,3 +94,35 @@ INSERT INTO movie VALUES
 9. Write the query to display the heroname who acted in maximum languages.
 10. Write the query to display the production name, owner name who has produced movie for more languages.
 11. Write the query to display the productionname, producername who has not produced any movie.
+
+## Subquery Practice
+* Create A CUSTOMER table: 
+```
+CREATE TABLE CUSTOMERS(
+    ID INT(4), 
+    NAME VARCHAR(30), 
+    AGE INT(4), 
+    ADDRESS VARCHAR(30), 
+    SALARY VARCHAR(10)
+    );
+```
+* Insert into CUSTOMER table : 
+```
+INSERT INTO CUSTOMERS VALUES
+('1', 'Ramesh', '35', 'Ahmedabad', '2000.00'),
+('2', 'Khilan', '25', 'Delhi', '1500.00'),
+('3', 'kaushik', '23', 'Kota', '2000.00'),
+( '4', 'Chaitali', '25', 'Mumbai', '6500.00'),
+('5', 'Hardik', '27', 'Bhopal', '8500.00'),
+('6', 'Komal', '22', 'MP', '4500.00'),
+( '7', 'Muffy', '24', 'Indore', '10000.00')
+;
+```
+* Show Table :
+`SELECT * FROM CUSTOMERS;`
+* Subquery with Select Statement : 
+`SELECT * FROM CUSTOMERS WHERE ID IN (SELECT ID FROM CUSTOMERS WHERE SALARY > 4500) ;`
+* Choose the agr and address of customers whose salary is 2000.00 :
+`SELECT AGE,ADDRESS FROM CUSTOMERS WHERE SALARY IN(SELECT SALARY FROM CUSTOMERS WHERE SALARY=2000.00);`
+* Second Largest Salary :
+`SELECT MAX(SALARY) FROM CUSTOMERS WHERE SALARY NOT IN(SELECT MAX(SALARY) FROM CUSTOMERS);`
